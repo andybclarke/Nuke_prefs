@@ -1,0 +1,25 @@
+set cut_paste_input [stack 0]
+version 8.0 v5
+push $cut_paste_input
+Dot {
+ name Dot1
+ selected true
+ xpos 52
+ ypos -206
+}
+set N5f7bc20 [stack 0]
+IBKColourV3 {
+ name IBKColourV3_1
+ selected true
+ xpos -107
+ ypos -131
+ screen_type green
+}
+push $N5f7bc20
+IBKGizmoV3 {
+ inputs 2
+ name IBKGizmoV3_1
+ xpos 18
+ ypos -131
+ st C-green
+}

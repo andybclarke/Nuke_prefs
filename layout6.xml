@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="1920" y="22" w="1920" h="1178" screen="1">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1872"/>
+            <splitter orientation="1">
+                <split size="1872"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+            </splitter>
+        </splitter>
+    </window>
+    <window x="0" y="25" w="1920" h="1150" screen="0">
+        <splitter orientation="2">
+            <split size="63"/>
+            <dock id="" activePageId="Toolbar_CustomTools.1">
+                <page id="Toolbar_CustomTools.1"/>
+            </dock>
+            <split size="705"/>
+            <dock id="" activePageId="DAG.1">
+                <page id="DAG.1"/>
+                <page id="Curve Editor.1"/>
+                <page id="DAG.2"/>
+            </dock>
+            <split size="346"/>
+            <splitter orientation="1">
+                <split size="455"/>
+                <dock id="" activePageId="Pixel Analyzer.1">
+                    <page id="Pixel Analyzer.1"/>
+                </dock>
+                <split size="497"/>
+                <splitter orientation="2">
+                    <split size="78"/>
+                    <dock id="" activePageId="Progress.1">
+                        <page id="Histogram.1" layout="Current Viewer"/>
+                        <page id="Progress.1"/>
+                    </dock>
+                    <split size="264"/>
+                    <dock id="" activePageId="DopeSheet.1">
+                        <page id="DopeSheet.1"/>
+                    </dock>
+                </splitter>
+                <split size="631"/>
+                <dock id="" activePageId="Script Editor.1">
+                    <page id="Waveform.1" layout="Current Viewer"/>
+                    <page id="Script Editor.1"/>
+                </dock>
+                <split size="321"/>
+                <dock id="" activePageId="Vectorscope.1">
+                    <page id="Vectorscope.1" layout="Current Viewer"/>
+                    <page id="disable_nodes_panel"/>
+                </dock>
+            </splitter>
+        </splitter>
+    </window>
+    <window x="3216" y="674" w="610" h="425" screen="1">
+        <splitter orientation="2">
+            <split size="397"/>
+            <dock id="" activePageId="Viewer.2">
+                <page id="Viewer.2"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>

@@ -1,0 +1,397 @@
+#! /usr/local/Nuke6.3v8/Nuke6.3 -nx
+version 6.3 v8
+Gizmo {
+ addUserKnob {20 WLV_CA}
+ addUserKnob {6 Grid_Test_Toggle +STARTLINE}
+ Grid_Test_Toggle true
+ addUserKnob {26 "" +STARTLINE}
+ addUserKnob {7 RED_Distort R -0.1 0.1}
+ RED_Distort 0.015
+ addUserKnob {7 GREEN_Distort R -0.1 0.1}
+ addUserKnob {7 BLUE_Distort R -0.1 0.1}
+ addUserKnob {26 "" +STARTLINE}
+ addUserKnob {14 Red_Blur R 0 100}
+ Red_Blur 10
+ addUserKnob {14 Green_Blur R 0 100}
+ addUserKnob {14 Blue_Blur R 0 100}
+ addUserKnob {26 "" +STARTLINE}
+ addUserKnob {41 Red_translate T Transform1.translate}
+ addUserKnob {41 Green_translate T Transform2.translate}
+ addUserKnob {41 Blue_translate T Transform3.translate}
+}
+ Constant {
+  inputs 0
+  channels rgb
+  name Constant1
+  xpos 500
+  ypos -220
+ }
+set N63a8750 [stack 0]
+ Ramp {
+  output {rgba.red -rgba.green -rgba.blue -rgba.alpha}
+  p0 {0 0}
+  p1 {{width i} 0}
+  name Ramp1
+  xpos 445
+  ypos -117
+ }
+push $N63a8750
+ Ramp {
+  output {-rgba.red rgba.green -rgba.blue -rgba.alpha}
+  p0 {0 0}
+  p1 {0 {height i}}
+  name Ramp2
+  xpos 553
+  ypos -115
+ }
+ Merge2 {
+  inputs 2
+  name Merge1
+  xpos 500
+  ypos -61
+ }
+set N63bfdf0 [stack 0]
+push $N63bfdf0
+ Transform {
+  center {1024 778}
+  name Transform3
+  xpos 755
+  ypos 71
+ }
+ LensDistortion1_0 {
+  serializeKnob ""
+  serialiseKnob "22 serialization::archive 4 0 0 0 0 0 0 0 0 0 0 0 0"
+  distortion2 {{parent.BLUE_Distort/100 i}}
+  cardScale {0.5000000596 0.5000000596 1}
+  a 3.20925951
+  b -3.073357582
+  c -0.0033707025
+  name LensDistortion6
+  xpos 755
+  ypos 120
+ }
+ Crop {
+  box {0 0 {root.format.width} {root.format.height}}
+  name Crop3
+  xpos 755
+  ypos 146
+ }
+set N13c1e2b0 [stack 0]
+ Merge2 {
+  inputs 2
+  operation difference
+  name Merge5
+  xpos 318
+  ypos 221
+ }
+ Remove {
+  operation keep
+  channels {rgba.red -rgba.green -rgba.blue}
+  name Remove3
+  xpos 318
+  ypos 247
+ }
+ Clamp {
+  name Clamp3
+  xpos 318
+  ypos 289
+ }
+ Grade {
+  whitepoint {{abs(parent.LensDistortion6.distortion2) i}}
+  black_clamp false
+  name Grade3
+  xpos 318
+  ypos 327
+ }
+ Invert {
+  clamp true
+  name Invert4
+  xpos 318
+  ypos 368
+ }
+push $N13c1e2b0
+ CheckerBoard2 {
+  inputs 0
+  name CheckerBoard1
+  xpos 770
+  ypos -158
+ }
+ Input {
+  inputs 0
+  name Input1
+  xpos 927
+  ypos -226
+ }
+ Switch {
+  inputs 2
+  which {{parent.Grid_Test_Toggle i}}
+  name Switch1
+  xpos 927
+  ypos -135
+ }
+ Dot {
+  name Dot5
+  xpos 961
+  ypos 281
+ }
+set N6a8ff90 [stack 0]
+ STMap {
+  inputs 2
+  channels {-rgba.red -rgba.green rgba.blue}
+  uv rgb
+  blur_scale 0
+  name STMap3
+  xpos 755
+  ypos 328
+ }
+ ShuffleCopy {
+  inputs 2
+  black red
+  out2 depth
+  name ShuffleCopy7
+  xpos 318
+  ypos 421
+ }
+ ZBlur {
+  channels {-rgba.red -rgba.green rgba.blue}
+  center 1
+  size {{parent.Blue_Blur/1000 i}}
+  name ZBlur3
+  xpos 318
+  ypos 467
+ }
+ Crop {
+  box {0 0 {root.format.width i} {root.format.height i}}
+  name Crop8
+  xpos 318
+  ypos 505
+ }
+push $N63bfdf0
+push $N63bfdf0
+ Transform {
+  center {1024 778}
+  name Transform2
+  xpos 612
+  ypos 72
+ }
+ LensDistortion1_0 {
+  serializeKnob ""
+  serialiseKnob "22 serialization::archive 4 0 0 0 0 0 0 0 0 0 0 0 0"
+  distortion2 {{parent.GREEN_Distort/100 i}}
+  cardScale {0.5000000596 0.5000000596 1}
+  a 3.20925951
+  b -3.073357582
+  c -0.0033707025
+  name LensDistortion5
+  xpos 612
+  ypos 116
+ }
+ Crop {
+  box {0 0 {root.format.width} {root.format.height}}
+  name Crop2
+  xpos 612
+  ypos 142
+ }
+set N12733ff0 [stack 0]
+ Merge2 {
+  inputs 2
+  operation difference
+  name Merge4
+  xpos 185
+  ypos 219
+ }
+ Remove {
+  operation keep
+  channels {-rgba.red rgba.green -rgba.blue}
+  name Remove2
+  xpos 185
+  ypos 244
+ }
+ Clamp {
+  name Clamp2
+  xpos 185
+  ypos 282
+ }
+ Grade {
+  whitepoint {{abs(parent.LensDistortion5.distortion2) i}}
+  name Grade2
+  xpos 185
+  ypos 320
+ }
+ Invert {
+  name Invert3
+  xpos 185
+  ypos 365
+ }
+push $N12733ff0
+push $N6a8ff90
+ STMap {
+  inputs 2
+  channels {-rgba.red rgba.green -rgba.blue}
+  uv rgb
+  blur_scale 0
+  name STMap2
+  xpos 612
+  ypos 334
+ }
+ ShuffleCopy {
+  inputs 2
+  black green
+  out2 depth
+  name ShuffleCopy4
+  xpos 185
+  ypos 421
+ }
+ ZBlur {
+  channels {-rgba.red rgba.green -rgba.blue}
+  center 1
+  size {{parent.Green_Blur/1000 i}}
+  name ZBlur2
+  xpos 185
+  ypos 472
+ }
+ Crop {
+  box {0 0 {root.format.width i} {root.format.height i}}
+  name Crop7
+  xpos 185
+  ypos 510
+ }
+push $N63bfdf0
+ Dot {
+  name Dot1
+  xpos 20
+  ypos 108
+ }
+ Dot {
+  name Dot4
+  xpos 20
+  ypos 225
+ }
+push $N63bfdf0
+ Transform {
+  center {1024 778}
+  name Transform1
+  xpos 487
+  ypos 74
+ }
+ LensDistortion1_0 {
+  serializeKnob ""
+  serialiseKnob "22 serialization::archive 4 0 0 0 0 0 0 0 0 0 0 0 0"
+  distortion2 {{parent.RED_Distort/100 i}}
+  cardScale {0.5005021095 0.5005021095 1}
+  a 5.044857502
+  b -7.030033112
+  c 2.710325003
+  name LensDistortion4
+  xpos 487
+  ypos 109
+ }
+ Crop {
+  box {0 0 {root.format.width i} {root.format.height i}}
+  name Crop1
+  xpos 487
+  ypos 145
+ }
+ Dot {
+  name Dot2
+  xpos 527
+  ypos 186
+ }
+set N6412990 [stack 0]
+ Dot {
+  name Dot3
+  xpos 92
+  ypos 186
+ }
+ Merge2 {
+  inputs 2
+  operation difference
+  name Merge2
+  xpos 58
+  ypos 221
+ }
+ Remove {
+  operation keep
+  channels {rgba.red -rgba.green -rgba.blue}
+  name Remove1
+  xpos 58
+  ypos 246
+ }
+ Clamp {
+  name Clamp1
+  xpos 58
+  ypos 284
+ }
+ Grade {
+  whitepoint {{abs(parent.LensDistortion4.distortion2) i}}
+  name Grade1
+  xpos 58
+  ypos 322
+ }
+ Invert {
+  clamp true
+  name Invert2
+  xpos 58
+  ypos 360
+ }
+push $N6412990
+push $N6a8ff90
+ STMap {
+  inputs 2
+  channels {rgba.red -rgba.green -rgba.blue}
+  uv rgb
+  blur_scale 0
+  name STMap1
+  xpos 493
+  ypos 332
+ }
+set N6415890 [stack 0]
+ ShuffleCopy {
+  inputs 2
+  black red
+  out2 depth
+  name ShuffleCopy1
+  xpos 58
+  ypos 421
+ }
+ ZBlur {
+  channels {rgba.red -rgba.green -rgba.blue}
+  center 1
+  size {{parent.Red_Blur/1000}}
+  name ZBlur1
+  xpos 58
+  ypos 469
+ }
+ Crop {
+  box {0 0 {root.format.width i} {root.format.height i}}
+  name Crop6
+  xpos 58
+  ypos 507
+ }
+ ShuffleCopy {
+  inputs 2
+  green green
+  name ShuffleCopy8
+  xpos 58
+  ypos 568
+ }
+ ShuffleCopy {
+  inputs 2
+  blue blue
+  name ShuffleCopy9
+  xpos 58
+  ypos 615
+ }
+ Output {
+  name Output
+  xpos 58
+  ypos 797
+ }
+push $N6415890
+ Viewer {
+  input_process false
+  name Viewer1
+  xpos 116
+  ypos 905
+ }
+end_group

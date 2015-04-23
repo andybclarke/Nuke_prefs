@@ -1,0 +1,10 @@
+set cut_paste_input [stack 0]
+version 8.0 v5
+push $cut_paste_input
+Crop {
+box {{(width-((height/3)*4))/2} 0 {width-((width-((height/3)*4))/2)} 1080}
+name Crop2
+selected true
+xpos 3028
+ypos 8207
+}

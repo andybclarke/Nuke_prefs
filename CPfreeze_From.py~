@@ -1,0 +1,15 @@
+
+import nuke
+
+def  FreezeFrom():
+  for n in nuke.selectedNodes():
+
+    n.knob('from1').fromScript(n.knob('to1').toScript())
+    n.knob('from2').fromScript(n.knob('to2').toScript())
+    n.knob('from3').fromScript(n.knob('to3').toScript())
+    n.knob('from4').fromScript(n.knob('to4').toScript())
+    nuke.Knob.clearAnimated(nuke.selectedNode().knob('from1'))
+    nuke.Knob.clearAnimated(nuke.selectedNode().knob('from2'))
+    nuke.Knob.clearAnimated(nuke.selectedNode().knob('from3'))
+    nuke.Knob.clearAnimated(nuke.selectedNode().knob('from4'))
+

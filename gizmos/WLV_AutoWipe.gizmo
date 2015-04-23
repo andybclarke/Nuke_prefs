@@ -1,0 +1,427 @@
+#! /usr/local/Nuke6.3v8/Nuke6.3 -nx
+version 6.3 v8
+Gizmo {
+ inputs 4
+ addUserKnob {20 User}
+ addUserKnob {41 fpw l "No of frames per wipe" T Wipe.fpw}
+ addUserKnob {41 whiteline l "white line" T Wipe.whiteline}
+ addUserKnob {41 wipet l "wipe at % of shot" T Wipe.wipet}
+ addUserKnob {41 startwithbefore l "start with BEFORE" T Wipe.startwithbefore}
+}
+ Input {
+  inputs 0
+  name AFTER
+  xpos -918
+  ypos 9
+  number 2
+ }
+ Retime {
+  input.first 1097
+  input.last 1256
+  output.first 1001
+  output.first_lock true
+  output.last 1160
+  name Retime5
+  xpos -918
+  ypos 62
+ }
+ Dot {
+  name Dot29
+  xpos -884
+  ypos 166
+ }
+set N8420590 [stack 0]
+ Dot {
+  name Dot28
+  xpos 784
+  ypos 229
+ }
+ Input {
+  inputs 0
+  name BEFORE
+  xpos 852
+  ypos 18
+  number 3
+ }
+ Retime {
+  input.first 1097
+  input.last 1256
+  output.first 1001
+  output.first_lock true
+  output.last 1160
+  name Retime1
+  xpos 852
+  ypos 83
+ }
+ Dot {
+  name Dot30
+  xpos 886
+  ypos 181
+ }
+set N7c31820 [stack 0]
+ Switch {
+  inputs 2
+  which {{parent.Wipe.startwithbefore i}}
+  name Switch1
+  xpos 852
+  ypos 276
+ }
+ set C8d12720 [stack 0]
+add_layer {rgba rgba.beta redguard1.glow rgba.edgeblur}
+ Shuffle {
+  alpha white
+  name Shuffle7
+  xpos 852
+  ypos 481
+ }
+set Na44c490 [stack 0]
+ NoOp {
+  name NoOp1
+  xpos 263
+  ypos 725
+  addUserKnob {20 User}
+  addUserKnob {7 t}
+  t {{int((last_frame-first_frame)*Wipe.wipet)+first_frame i}}
+ }
+ NoOp {
+  inputs 0
+  name Wipe
+  xpos 52
+  ypos 535
+  addUserKnob {20 User}
+  addUserKnob {7 fpw l "No of frames per wipe" R 0 100}
+  fpw 20
+  addUserKnob {6 whiteline l "white line" +STARTLINE}
+  whiteline true
+  addUserKnob {7 wipet l "wipe at % of shot"}
+  wipet 0.5
+  addUserKnob {6 startwithbefore l "start with BEFORE" +STARTLINE}
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote5
+  label "1) Play 'AFTER'   ---->"
+  note_font "Bitstream Vera Sans Bold Bold Bold"
+  note_font_size 30
+  xpos -1259
+  ypos 1281
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote8
+  label "<----- 4) Play 'BEFORE' and WIPE during (depends on % slider) "
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold"
+  note_font_size 30
+  xpos 921
+  ypos 1278
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote6
+  label "2) Hold last frame and WIPE to BEFORE   ---->"
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold"
+  note_font_size 30
+  xpos -753
+  ypos 1149
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote7
+  label "<------  3) REWIND 'BEFORE' over 20 frames"
+  note_font "Bitstream Vera Sans Bold Bold Bold Bold Bold"
+  note_font_size 30
+  xpos 165
+  ypos 1149
+ }
+push $Na44c490
+ Dot {
+  name Dot16
+  xpos -99
+  ypos 485
+ }
+set Na84f990 [stack 0]
+ Transform {
+  translate {{"frame>1?(frame<(width/Wipe.fpw)?frame*(width/Wipe.fpw):(width*1)):0\n" i x1010 1828} 0}
+  scale {1 1.1}
+  center {{width/2 i} {height/2 i}}
+  name Transform5
+  xpos -133
+  ypos 534
+ }
+set Nb918480 [stack 0]
+ Dot {
+  name Dot17
+  xpos -222
+  ypos 538
+ }
+ Dot {
+  name Dot18
+  xpos -222
+  ypos 668
+ }
+set N4ab30b0 [stack 0]
+push $Nb918480
+ EdgeDetectWrapper {
+  channels alpha
+  erodesize -1.3
+  name EdgeDetectWrapper3
+  xpos -133
+  ypos 585
+ }
+ Crop {
+  box {0 0 {width i} {height i}}
+  intersect true
+  name Crop8
+  xpos -133
+  ypos 623
+ }
+ MotionBlur2D {
+  inputs 2
+  name MotionBlur2D3
+  xpos -133
+  ypos 664
+ }
+ VectorBlur {
+  uv motion
+  scale 0.35
+  name VectorBlur3
+  xpos -133
+  ypos 690
+ }
+ Shuffle {
+  red alpha
+  green alpha
+  blue alpha
+  name Shuffle5
+  xpos -133
+  ypos 728
+ }
+set N860bbf0 [stack 0]
+ Retime {
+  input.first 0
+  input.first_lock true
+  input.last {{parent.Wipe.fpw}}
+  input.last_lock true
+  output.first {{parent.NoOp1.t}}
+  output.first_lock true
+  output.last 1140
+  name Retime10
+  xpos 387
+  ypos 937
+ }
+push $N4ab30b0
+ Crop {
+  box {0 0 {width i} {height i}}
+  crop false
+  name Crop9
+  xpos -256
+  ypos 747
+ }
+ Dot {
+  name Dot21
+  xpos -222
+  ypos 841
+ }
+push $N860bbf0
+ Dot {
+  name Dot19
+  xpos -99
+  ypos 788
+ }
+set Na302710 [stack 0]
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy3
+  xpos -133
+  ypos 831
+ }
+ Dot {
+  name Dot25
+  xpos -99
+  ypos 890
+ }
+set N89d9df0 [stack 0]
+ Retime {
+  input.first 0
+  input.first_lock true
+  input.last {{parent.Wipe.fpw i}}
+  input.last_lock true
+  output.first {{parent.NoOp1.t i x1329 1040}}
+  output.first_lock true
+  output.last 1090
+  name Retime9
+  xpos 213
+  ypos 886
+ }
+push $Na44c490
+push $N7c31820
+ Dot {
+  name Dot27
+  xpos -805
+  ypos 230
+ }
+push $N8420590
+clone $C8d12720 {
+  inputs 2
+  xpos -918
+  ypos 280
+  selected false
+ }
+ Shuffle {
+  alpha white
+  name Shuffle8
+  xpos -918
+  ypos 484
+ }
+set N5354aa0 [stack 0]
+ Merge2 {
+  inputs 2+1
+  name Merge6
+  xpos 852
+  ypos 886
+ }
+ Merge2 {
+  inputs 2
+  name Merge7
+  xpos 852
+  ypos 937
+  disable {{parent.Wipe.whiteline==0?1:0 i x1274 0}}
+ }
+ Dot {
+  name Dot22
+  xpos 886
+  ypos 1298
+ }
+push $Na44c490
+ Retime {
+  input.first 1001
+  input.last 1160
+  reverse true
+  output.first 1001
+  output.first_lock true
+  output.last 1021
+  output.last_lock true
+  speed 7.619047619
+  before black
+  after black
+  filter none
+  name Retime7
+  label "REWIND over 20 frames\n"
+  xpos 208
+  ypos 1006
+ }
+ Dot {
+  name Dot26
+  xpos 118
+  ypos 1163
+ }
+push $Na302710
+ Dot {
+  name Dot20
+  xpos 31
+  ypos 788
+ }
+push $N89d9df0
+push $N5354aa0
+ FrameHold {
+  first_frame {{last_frame i}}
+  name FrameHold3
+  xpos -532
+  ypos 478
+ }
+push $Na84f990
+ FrameHold {
+  first_frame {{last_frame i}}
+  name FrameHold4
+  xpos -420
+  ypos 475
+ }
+ Merge2 {
+  inputs 2+1
+  name Merge4
+  xpos -433
+  ypos 886
+ }
+ Dot {
+  name Dot23
+  xpos -399
+  ypos 1017
+ }
+ Merge2 {
+  inputs 2
+  name Merge5
+  xpos -3
+  ypos 1013
+  disable {{parent.Wipe.whiteline==0?1:0 i}}
+ }
+ Retime {
+  input.first 0
+  input.first_lock true
+  input.last {{parent.Wipe.fpw i}}
+  input.last_lock true
+  output.first 1001
+  output.first_lock true
+  output.last 1021
+  name Retime6
+  xpos -3
+  ypos 1060
+ }
+ Dot {
+  name Dot24
+  xpos 31
+  ypos 1160
+ }
+push $N5354aa0
+ Dot {
+  name Dot15
+  xpos -884
+  ypos 1298
+ }
+ AppendClip {
+  inputs 4
+  firstFrame {{first_frame i}}
+  lastFrame 1362
+  meta_from_first false
+  name AppendClip2
+  xpos -3
+  ypos 1294
+ }
+ Output {
+  name Output
+  xpos -3
+  ypos 1382
+ }
+ Retime {
+  inputs 0
+  input.first 1097
+  input.first_lock true
+  input.last 1398
+  output.first 1001
+  output.first_lock true
+  output.last 1302
+  name Retime4
+  xpos -2688
+  ypos -13
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote3
+  label "BEFORE ----->"
+  note_font "Bitstream Vera Sans Bold Bold"
+  note_font_size 30
+  xpos 591
+  ypos 34
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote4
+  label "AFTER ----->"
+  note_font "Bitstream Vera Sans Bold Bold Bold"
+  note_font_size 30
+  selected true
+  xpos -1150
+  ypos 19
+ }
+end_group

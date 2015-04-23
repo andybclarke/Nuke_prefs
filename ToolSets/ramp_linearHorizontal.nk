@@ -1,0 +1,11 @@
+set cut_paste_input [stack 0]
+version 8.0 v5
+push $cut_paste_input
+Ramp {
+p0 {0 0}
+p1 {{width} 0}
+name Ramp2
+selected true
+xpos 3418
+ypos 3360
+}

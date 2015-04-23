@@ -1,0 +1,10 @@
+set cut_paste_input [stack 0]
+version 6.3 v8
+StickyNote {
+ inputs 0
+ name StickyNote8
+ label "for n in nuke.selectedNodes():\n    n.knob(\"uniform_scale\").setValue(.2)\n\n\nfor s in nuke.allNodes('Read'):\n    s\['on_error'].setValue('checkerboard')\n\n###set the tile color to purple\n\nfor n in nuke.selectedNodes():\n    n\['tile_color'].setValue(0x550055ff)"
+ selected true
+ xpos 7909
+ ypos -5703
+}

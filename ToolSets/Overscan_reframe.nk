@@ -1,0 +1,50 @@
+set cut_paste_input [stack 0]
+version 8.0 v5
+push $cut_paste_input
+Group {
+name Overscan_reframe
+selected true
+xpos 48298
+ypos -2227
+addUserKnob {20 Settings}
+addUserKnob {41 percent_overscan T NoOp1.percent_overscan}
+addUserKnob {41 resize l "resize type" T Reformat4.resize}
+}
+Input {
+inputs 0
+name Input1
+xpos 792
+ypos -333
+}
+Dot {
+name Dot1
+xpos 826
+ypos -268
+}
+set Nee1b0ff0 [stack 0]
+NoOp {
+name NoOp1
+xpos 687
+ypos -232
+addUserKnob {20 User}
+addUserKnob {7 percent_overscan R 0 100}
+percent_overscan 16.7
+}
+push $Nee1b0ff0
+Reformat {
+type "to box"
+box_width {{width-(width/100)*NoOp1.percent_overscan}}
+box_height {{height-(height/100)*NoOp1.percent_overscan}}
+resize none
+filter Impulse
+name Reformat4
+xpos 792
+ypos -228
+}
+Output {
+name Output1
+selected true
+xpos 792
+ypos -102
+}
+end_group

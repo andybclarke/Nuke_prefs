@@ -1,0 +1,92 @@
+set cut_paste_input [stack 0]
+version 8.0 v5
+push $cut_paste_input
+Dot {
+ name Dot1
+ selected true
+ xpos 1372
+ ypos 317
+}
+set N38cea60 [stack 0]
+Shuffle {
+ green black
+ blue black
+ alpha black
+ name Shuffle2
+ tile_color 0xff0000ff
+ label Red
+ selected true
+ xpos 1249
+ ypos 367
+}
+Dot {
+ name Dot3
+ selected true
+ xpos 1283
+ ypos 646
+}
+push $N38cea60
+Shuffle {
+ red black
+ blue black
+ alpha black
+ name Shuffle3
+ tile_color 0xff00ff
+ label Green
+ selected true
+ xpos 1338
+ ypos 367
+}
+Dot {
+ name Dot2
+ selected true
+ xpos 1372
+ ypos 523
+}
+push $N38cea60
+Shuffle {
+ red black
+ green black
+ alpha black
+ name Shuffle4
+ tile_color 0xffff
+ label "Blue\n"
+ selected true
+ xpos 1424
+ ypos 367
+}
+ShuffleCopy {
+ inputs 2
+ red black
+ green green
+ alpha black
+ name ShuffleCopy1
+ tile_color 0xffffff
+ label "Blue and Green"
+ selected true
+ xpos 1424
+ ypos 513
+}
+Dot {
+ name Dot6
+ selected true
+ xpos 1458
+ ypos 646
+}
+ShuffleCopy {
+ inputs 2
+ red red
+ alpha black
+ name ShuffleCopy2
+ tile_color 0xffffffff
+ label "Red and Blue and Green"
+ selected true
+ xpos 1339
+ ypos 636
+}
+Dot {
+ name Dot5
+ selected true
+ xpos 1373
+ ypos 769
+}

@@ -1,0 +1,223 @@
+set cut_paste_input [stack 0]
+version 8.0 v5
+BackdropNode {
+inputs 0
+name BackdropNode4
+tile_color 0x8e8e3800
+label Normal
+note_font_size 42
+selected true
+xpos -342
+ypos 4103
+bdwidth 477
+bdheight 462
+}
+Constant {
+inputs 0
+channels rgb
+color 0.5
+name Constant12
+selected true
+xpos -149
+ypos 4241
+}
+set Ne00ceb40 [stack 0]
+Noise {
+inputs 0
+center {1440 810}
+name Noise2
+selected true
+xpos -144
+ypos 4020
+}
+Invert {
+name Invert3
+selected true
+xpos -144
+ypos 4062
+}
+ColorCorrect {
+saturation 0
+name ColorCorrect2
+selected true
+xpos -144
+ypos 4194
+}
+set Nf59c3c0 [stack 0]
+push $Nf59c3c0
+Transform {
+translate {0 5}
+center {1024 778}
+name Transform7
+selected true
+xpos -255
+ypos 4180
+}
+Merge2 {
+inputs 2
+operation from
+name Merge28
+selected true
+xpos -255
+ypos 4240
+}
+clone node7f6aafd25870|Merge2|17705 Merge2 {
+inputs 2
+operation plus
+name Merge29
+selected true
+xpos -255
+ypos 4313
+}
+set Cafd25870 [stack 0]
+Shuffle {
+green black
+blue black
+alpha black
+name Shuffle10
+selected true
+xpos -255
+ypos 4351
+}
+push $Ne00ceb40
+push $Nf59c3c0
+push $Nf59c3c0
+Transform {
+translate {{-parent.Transform7.translate.y i} {-parent.Transform7.translate.x i}}
+center {1024 778}
+name Transform8
+selected true
+xpos -35
+ypos 4179
+}
+Merge2 {
+inputs 2
+operation from
+name Merge30
+selected true
+xpos -35
+ypos 4236
+}
+clone $Cafd25870 {
+inputs 2
+xpos -35
+ypos 4311
+selected true
+}
+Shuffle {
+red black
+blue black
+alpha black
+name Shuffle11
+selected true
+xpos -35
+ypos 4345
+}
+Merge2 {
+inputs 2
+operation average
+name Merge31
+selected true
+xpos -145
+ypos 4400
+}
+Expression {
+channel0 {-rgba.red -rgba.green rgba.blue none}
+expr0 "sqrt(1 - (r*r) - (g*g))"
+channel1 none
+channel2 none
+channel3 none
+name Expression2
+selected true
+xpos -145
+ypos 4439
+}
+Transform {
+scale {{"1 + (parent.Transform7.translate.y/(width/2))"}}
+center {1024 1024}
+name Transform9
+selected true
+xpos -145
+ypos 4481
+}
+Reformat {
+format "2048 2048 0 0 2048 2048 1 square_2K"
+resize distort
+name Reformat4
+selected true
+xpos -145
+ypos 4521
+}
+set Na9cec870 [stack 0]
+Constant {
+inputs 0
+channels rgb
+color {0 0 0 1}
+name Constant13
+selected true
+xpos 269
+ypos 4133
+}
+Specular {
+name Specular1
+selected true
+xpos 269
+ypos 4239
+}
+Card2 {
+rows 200
+columns 200
+control_points {3 3 3 6 
+
+1 {-0.5 -0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0 0 0} 
+1 {0 -0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0.5 0 0} 
+1 {0.5 -0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {1 0 0} 
+1 {-0.5 0 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0 0.5 0} 
+1 {0 0 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0.5 0.5 0} 
+1 {0.5 0 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {1 0.5 0} 
+1 {-0.5 0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0 1 0} 
+1 {0 0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0.5 1 0} 
+1 {0.5 0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {1 1 0} }
+name Card1
+selected true
+xpos 269
+ypos 4293
+}
+TransformGeo {
+rotate {0 -21 0}
+pivot {-0.5 0 0}
+name TransformGeo1
+selected true
+xpos 269
+ypos 4359
+}
+push $cut_paste_input
+Light2 {
+translate {-2.13499999 0.1019999981 0.4799999893}
+depthmap_slope_bias 0.01
+name Light1
+selected true
+xpos 428
+ypos 4405
+}
+Scene {
+inputs 2
+name Scene1
+selected true
+xpos 279
+ypos 4405
+}
+DisplaceGeo {
+inputs 2
+name DisplaceGeo1
+selected true
+xpos 269
+ypos 4527
+}
+push $Na9cec870
+Output {
+name Output1
+selected true
+xpos -145
+ypos 4630
+}

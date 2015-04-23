@@ -1,0 +1,44 @@
+set cut_paste_input [stack 0]
+version 8.0 v5
+BackdropNode {
+ inputs 0
+ name BackdropNode14
+ tile_color 0xaaaaaa00
+ label "Heat haze\n"
+ note_font_size 32
+ selected true
+ xpos -336
+ ypos -1512
+ bdwidth 400
+ bdheight 132
+}
+Noise {
+ inputs 0
+ size {85 275}
+ zoffset {{frame/40}}
+ translate {0 {(frame*20)-10870}}
+ center {1440 810}
+ name Noise1
+ selected true
+ xpos -168
+ ypos -1465
+}
+push $cut_paste_input
+ShuffleCopy {
+ inputs 2
+ black red
+ white green
+ out2 motion
+ name ShuffleCopy1
+ selected true
+ xpos -53
+ ypos -1466
+}
+IDistort {
+ channels rgb
+ uv motion
+ name IDistort1
+ selected true
+ xpos -54
+ ypos -1423
+}

@@ -1,0 +1,137 @@
+set cut_paste_input [stack 0]
+version 8.0 v5
+push $cut_paste_input
+Group {
+name Aspect_Ratio_CropGuide
+selected true
+xpos -2002
+ypos 4109
+addUserKnob {20 User}
+addUserKnob {6 reformattocroppedsize l "Reformat to cropped size" +STARTLINE}
+addUserKnob {4 Ratio M {1.78 1.85 2.35 2.39 2.40 ""}}
+Ratio 1.85
+addUserKnob {6 text +STARTLINE}
+addUserKnob {41 mix T Merge2.mix}
+}
+Input {
+inputs 0
+name Input1
+xpos -41
+ypos 52
+}
+Dot {
+name Dot3
+xpos -7
+ypos 111
+}
+set N875fed90 [stack 0]
+Dot {
+name Dot4
+xpos 98
+ypos 111
+}
+Dot {
+name Dot2
+xpos 98
+ypos 446
+}
+push $N875fed90
+Shuffle {
+alpha white
+name Shuffle2
+xpos -41
+ypos 157
+}
+Dot {
+name Dot1
+xpos -7
+ypos 183
+}
+set Ndd6f2480 [stack 0]
+Crop {
+box {0 {"(height-(width/(Ratio==0? 1.78:Ratio==1? 1.85:Ratio==2? 2.35:Ratio==3? 2.39:Ratio==4? 2.40:t)))/2"} {width} {"(height-(width/(Ratio==0? 1.78:Ratio==1? 1.85:Ratio==2? 2.35:Ratio==3? 2.39:Ratio==4? 2.40:t)))/2+width/(Ratio==0? 1.78:Ratio==1? 1.85:Ratio==2? 2.35:Ratio==3? 2.39:Ratio==4? 2.40:t)"}}
+intersect true
+name Crop2
+xpos -161
+ypos 200
+}
+Shuffle {
+red alpha
+green alpha
+blue alpha
+name Shuffle1
+xpos -161
+ypos 253
+}
+set N5e4bcae0 [stack 0]
+Text2 {
+font_size_toolbar 30
+font_width_toolbar 100
+font_height_toolbar 100
+message "2.35 crop guide"
+box {0 0 0 {(height-(width/2.35))/2}}
+hidden_bbox {11.5 39.5 460.5 140.5}
+transforms {{0 2}
+  }
+font_size_values {{0 30 1 30 2 30 3 30 4 30 5 30 6 30 7 30 8 30 9 30 10 30 11 30 12 30 13 30 14 30}
+  }
+font {{ URW Gothic L : Demi : default/Type1/a010015l.pfb : 0 }}
+font_size 30
+scale {1 1}
+cursor_initialised true
+autofit_bbox false
+initial_cursor_position {{11.5 39.5}
+  }
+group_animations {{0} imported: 0 selected: items: "root transform/"}
+animation_layers {{1 11 1024 576 0 0 1 1 0 0 0 0}
+  }
+name Text1
+xpos -235
+ypos 293
+}
+push $N5e4bcae0
+Switch {
+inputs 2
+which {{parent.text}}
+name Switch1
+xpos -161
+ypos 332
+}
+push $Ndd6f2480
+Merge2 {
+inputs 2
+operation multiply
+name Merge2
+xpos -41
+ypos 391
+}
+ShuffleCopy {
+inputs 2
+name ShuffleCopy1
+selected true
+xpos -41
+ypos 442
+}
+Crop {
+box {{parent.Crop2.box} {parent.Crop2.box} {parent.Crop2.box} {parent.Crop2.box}}
+reformat true
+crop false
+name Crop1
+xpos -41
+ypos 488
+disable {{"parent.reformattocroppedsize-1 %2" x1154 0}}
+}
+set Ndc534140 [stack 0]
+Output {
+name Output1
+xpos -41
+ypos 573
+}
+push $Ndc534140
+Viewer {
+input_process false
+name Viewer1
+xpos -197
+ypos 611
+}
+end_group

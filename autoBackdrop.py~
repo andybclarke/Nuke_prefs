@@ -1,0 +1,10 @@
+
+import nuke
+
+
+
+
+#create Backdrop Node
+bd = nuke.createNode("BackdropNode")
+bd.knob("tile_color").setValue(0x88888800)
+

@@ -1,0 +1,260 @@
+set cut_paste_input [stack 0]
+version 8.0 v4
+Group {
+inputs 0
+name AC_UV_Helper
+selected true
+xpos 1559
+ypos 352
+addUserKnob {20 UV_Grid}
+addUserKnob {6 uvramp l "UV (RG) ramp" t "Toggle to UV red and green linear ramps\n" +STARTLINE}
+addUserKnob {6 Grids t "Toggle hide/show grid overlay" +STARTLINE}
+Grids true
+addUserKnob {6 Numbers t "Toggle hide/show numbers 1 - 100 " +STARTLINE}
+Numbers true
+addUserKnob {4 Subd M {0 1/4 1/5 1/10}}
+addUserKnob {41 format l "output format" T Reformat5.format}
+addUserKnob {41 font T Text2.font}
+}
+ColorWheel {
+inputs 0
+format "40 40 0 0 40 40 1 40x40"
+gamma 0.45
+name ColorWheel1
+xpos 389
+ypos -253
+}
+Crop {
+box {10 10 30 30}
+reformat true
+crop false
+name Crop1
+xpos 389
+ypos -161
+}
+Grade {
+black -0.2
+white 1.2
+multiply 0.7
+name Grade1
+xpos 389
+ypos -121
+}
+Reformat {
+format "1024 1024 0 0 1024 1024 1 square_1K"
+scale {{curve i}}
+resize distort
+filter Impulse
+name Reformat5
+xpos 389
+ypos -83
+}
+set C5215e50 [stack 0]
+set N5215e50 [stack 0]
+Remove {
+name Remove1
+xpos 181
+ypos -97
+}
+set N54fd050 [stack 0]
+Ramp {
+output {rgba.red -rgba.green -rgba.blue -rgba.alpha}
+p0 {0 0}
+p1 {{width i} 0}
+name Ramp1
+xpos -28
+ypos -92
+}
+set N5452bb0 [stack 0]
+push $N5452bb0
+Ramp {
+output {-rgba.red rgba.green -rgba.blue -rgba.alpha}
+p0 {0 0}
+p1 {0 {height i}}
+name Ramp2
+xpos -28
+ypos -39
+}
+set Na5eee30 [stack 0]
+Viewer {
+inputs 2
+input_process false
+name Viewer1
+xpos 177
+ypos 523
+}
+push $Na5eee30
+Dot {
+name Dot1
+xpos 6
+ypos 305
+}
+push $N54fd050
+Reformat {
+type scale
+scale 0.1
+resize distort
+name Reformat7
+xpos 181
+ypos -63
+}
+Text2 {
+font_size_toolbar 32
+font_width_toolbar 100
+font_height_toolbar 100
+message "\[frame]"
+box {0 0 {width} {height}}
+xjustify center
+yjustify center
+transforms {{0 2}
+  }
+font_size_values {{2 32 0 32 1 32}
+  }
+cursor_position 4
+font {{ URW Gothic L : Demi : default/Type1/a010015l.pfb : 0 }}
+font_size 32
+center {1440 810}
+cursor_initialised true
+autofit_bbox false
+initial_cursor_position {{0 1620}
+  }
+group_animations {{0} imported: 0 selected: 0 items: "root transform/"}
+animation_layers {{1 11 1440 810 0 0 1 1 0 0 0 0}
+  }
+name Text1
+selected true
+xpos 181
+ypos -25
+}
+ContactSheet {
+width {{Reformat5.format.w i}}
+height {{Reformat5.format.h i}}
+rows 10
+columns 10
+roworder TopBottom
+splitinputs true
+startframe 1
+endframe 100
+name ContactSheet1
+xpos 181
+ypos 8
+}
+Dot {
+name Dot7
+xpos 215
+ypos 238
+}
+CheckerBoard2 {
+inputs 0
+format "1024 1024 0 0 1024 1024 1 square_1K"
+boxsize {{parent.Subd==0?width:parent.Subd==1?512:parent.Subd==2?204.8:parent.Subd==3?102.4:0 i}}
+color0 0
+color1 1
+color2 0
+color3 1
+centerlinewidth 0
+name CheckerBoard2
+xpos 553
+ypos -85
+}
+Transform {
+translate {102.4 102.4}
+center {512 512}
+black_outside false
+name Transform2
+xpos 553
+ypos -13
+disable {{parent.Subd==2?0:1 i}}
+}
+Remove {
+name Remove2
+xpos 553
+ypos 20
+disable {{parent.Subd==0?0:1 i}}
+}
+clone $C5215e50 {
+xpos 553
+ypos 61
+selected false
+}
+push $N5215e50
+Grid {
+number 20
+size {{Reformat5.format.w/500 i}}
+color 0
+name Grid2
+xpos 389
+ypos -49
+disable {{parent.Grids==0?1:0 i}}
+}
+Grid {
+size {{Reformat5.format.w/500 i}}
+name Grid3
+xpos 389
+ypos -25
+disable {{parent.Grids==0?1:0 i}}
+}
+Grid {
+number 2
+size {{Reformat5.format.w/350 i}}
+name Grid4
+xpos 389
+ypos -1
+disable {{parent.Grids==0?1:0 i}}
+}
+Dot {
+name Dot4
+xpos 423
+ypos 26
+}
+set N52aaec0 [stack 0]
+Dot {
+name Dot9
+xpos 314
+ypos 26
+}
+Transform {
+rotate 180
+center {{width/2 i} {height/2 i}}
+filter Impulse
+name Transform1
+xpos 280
+ypos 73
+}
+Dot {
+name Dot8
+xpos 314
+ypos 126
+}
+push $N52aaec0
+Keymix {
+inputs 3
+name Keymix1
+xpos 389
+ypos 118
+}
+Merge2 {
+inputs 2
+name Merge5
+xpos 325
+ypos 235
+disable {{parent.Numbers==0?1:0 i}}
+}
+Switch {
+inputs 2
+which {{parent.uvramp==0?0:1 i}}
+name Switch1
+xpos 325
+ypos 302
+}
+clone $C5215e50 {
+xpos 328
+ypos 362
+selected false
+}
+Output {
+name Output1
+xpos 328
+ypos 442
+}
+end_group

@@ -1,0 +1,64 @@
+set cut_paste_input [stack 0]
+version 8.0 v5
+push $cut_paste_input
+Group {
+name Ramp2colours
+selected true
+xpos 3281
+ypos -1504
+addUserKnob {20 ramp2}
+addUserKnob {41 color_1 T Ramp4.color}
+addUserKnob {41 color_2 T Ramp5.color}
+addUserKnob {41 p0 l "point 0" T Ramp5.p0}
+addUserKnob {41 p1 l "point 1" T Ramp5.p1}
+}
+Input {
+inputs 0
+name Input1
+xpos 838
+ypos -333
+}
+Dot {
+name Dot3
+xpos 872
+ypos -290
+}
+set N1bedb2b0 [stack 0]
+Ramp {
+cliptype none
+p0 {{parent.Ramp5.p1} {parent.Ramp5.p1}}
+p1 {{parent.Ramp5.p0} {parent.Ramp5.p0}}
+color {0.4639621079 0.4768744409 0.1800000072 0.9999999404}
+name Ramp4
+xpos 771
+ypos -239
+}
+push $N1bedb2b0
+Ramp {
+cliptype none
+p0 {698 569}
+p1 {416 344}
+color {0.4639621079 0.4768744409 0.5681151748 0.9999999404}
+name Ramp5
+selected true
+xpos 894
+ypos -237
+}
+Merge2 {
+inputs 2
+operation plus
+name Merge7
+xpos 835
+ypos -182
+}
+Output {
+name Output1
+xpos 835
+ypos -139
+}
+Output {
+name Output1
+xpos 835
+ypos -39
+}
+end_group

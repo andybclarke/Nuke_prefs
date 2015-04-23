@@ -1,0 +1,86 @@
+set cut_paste_input [stack 0]
+version 8.0 v5
+Phong {
+inputs 0
+diffuse 0
+specular 4
+min_shininess 5.1
+max_shininess 74
+name Phong1
+selected true
+xpos 18790
+ypos -3082
+}
+Camera2 {
+inputs 0
+read_from_file true
+rot_order XYZ
+translate {0 10 100}
+rotate {0 90 0}
+haperture 24.8920002
+vaperture 18.66946666
+near 0.200000003
+far 400
+file /net/isilon/ifs/jobs/the_woods/sequences/basement/shots/basement_0070/MM/publish/matchmove/v023/channels/output/tracking/fbx/matchmove_output_v023.fbx
+fbx_node_name {{7} "Producer Perspective" "Producer Top" "Producer Bottom" "Producer Front" "Producer Back" "Producer Right" "Producer Left" Camera01 Camera02}
+name Camera5
+selected true
+xpos 19208
+ypos -3102
+}
+Light2 {
+inputs 0
+intensity 0.1
+translate {-2.43466723 13.36318493 72.90725708}
+name Light1
+selected true
+xpos 19075
+ypos -3314
+}
+Scene {
+name Scene4
+selected true
+xpos 19075
+ypos -3206
+}
+push 0
+push 0
+push $cut_paste_input
+add_layer {N N.red N.green N.blue N.alpha}
+ShuffleCopy {
+inputs 2
+alpha alpha2
+black red
+white green
+red2 blue
+out2 N
+name ShuffleCopy37
+label "\[value out2]"
+selected true
+xpos 18924
+ypos -3187
+}
+add_layer {P P.red P.green P.blue P.alpha}
+ShuffleCopy {
+inputs 2
+alpha alpha2
+black red
+white green
+red2 blue
+out2 P
+name ShuffleCopy36
+label "\[value out2]"
+selected true
+xpos 18924
+ypos -3141
+}
+ReLight {
+inputs 4
+use_alpha true
+normal N
+position P
+name ReLight1
+selected true
+xpos 18924
+ypos -3082
+}

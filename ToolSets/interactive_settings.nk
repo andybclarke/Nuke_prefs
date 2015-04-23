@@ -1,0 +1,17 @@
+set cut_paste_input [stack 0]
+version 8.0 v5
+push $cut_paste_input
+NoOp {
+name interactive_settings
+label "\[value interactive]"
+note_font "Bitstream Vera Sans Bold Bold Bold"
+note_font_size 50
+selected true
+xpos 2908
+ypos 504
+addUserKnob {20 Settings}
+addUserKnob {22 rendersettings l "render settings" T "for s in nuke.allNodes('ScanlineRender'):\n    s\['antialiasing'].setValue('2')\n    s\['samples'].setValue(10)\n\nfor n in nuke.allNodes('Cube'):\n   n\['rows'].setValue(100)\n   n\['columns'].setValue(100)\n\nfor n in nuke.selectedNodes():\n  n\['interactive'].setValue(0)" +STARTLINE}
+addUserKnob {22 interactivesettings l "interactive settings" T "for s in nuke.allNodes('ScanlineRender'):\n    s\['antialiasing'].setValue('0')\n    s\['samples'].setValue(1)\n\nfor n in nuke.allNodes('Cube'):\n   n\['rows'].setValue(4)\n   n\['columns'].setValue(4)\n\n\nfor n in nuke.selectedNodes():\n  n\['interactive'].setValue(1)" +STARTLINE}
+addUserKnob {6 interactive +STARTLINE}
+interactive true
+}

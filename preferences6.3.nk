@@ -1,0 +1,28 @@
+Preferences {
+ inputs 0
+ name Preferences
+ AutoSaveIdle 120
+ CacheLimit 60
+ DiskCachePath /CACHE/nuke/
+ diskCacheGB 100
+ PaintCacheGB 60
+ goofy_foot false
+ ArrowColorLeft 0x4d0000ff
+ ArrowColorUp 0x4b0000ff
+ rgb_only true
+ defaultBufferDepth half-float
+ defaultGPUForViewer true
+ viewer_bg_color_3D 0x3f3f3fff
+ Viewer3DControlEmulation Maya
+ echoAllCommands true
+ addUserKnob {20 J_Ops}
+ addUserKnob {7 j_ops_ver +INVISIBLE}
+ j_ops_ver 2.0101
+ addUserKnob {6 j_ops_enable_drop l "Improved drag and drop" t "Enable/disable a somewhat improved drag and drop behaviour. Requires Nuke restart to take effect. Adds creation of geo, camera, light and vectorfield nodes based on incoming file extensions, as well as support for sequences when dropping folders onto DAG." +STARTLINE}
+ j_ops_enable_drop true
+ addUserKnob {6 j_ops_enable_bookmark l "DAG bookmarks" t "Enable/disable DAG bookmarks, allowing storing and recalling of particular DAG locations and zoom settings, for easy navigation around a script. Requires Nuke restart to take effect. Adds Python-DAG Bookmarks menu to J_Ops toolbar, offering access via mouse, tab menu, or hotkeys." +STARTLINE}
+ j_ops_enable_bookmark true
+ addUserKnob {26 j_ops_dropdivider_label l "Drag And Drop"}
+ addUserKnob {6 j_ops_drop_recurse l "Recurse directories" t "Enable/disable recursion into directories dropped on DAG. When enabled will result in entire directory structure being imported into DAG, when disabled only the directory dropped will be imported (ie none of its sub directories)" -STARTLINE}
+ j_ops_drop_recurse true
+}

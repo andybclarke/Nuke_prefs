@@ -1,0 +1,10 @@
+set cut_paste_input [stack 0]
+version 7.0 v6
+StickyNote {
+ inputs 0
+ name StickyNote8
+ label "for n in nuke.allNodes('StickyNote'):\n    n.knob(\"note_font_size\").setValue(50)"
+ selected true
+ xpos 3436
+ ypos -527
+}

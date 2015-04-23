@@ -1,0 +1,190 @@
+set cut_paste_input [stack 0]
+version 6.3 v8
+push $cut_paste_input
+Group {
+ name CHECKS1
+ selected true
+ xpos -11928
+ ypos -2192
+ addUserKnob {20 User}
+ addUserKnob {6 _3up t "Show First Middle and Last Frames simultaeniously" +STARTLINE}
+ _3up true
+ addUserKnob {7 Resolution}
+ Resolution 0.1
+ addUserKnob {6 Horizontal_Vertical t "Check box on = Horizontal layout of frames\nCheck box off = Vertical Layout of frames\t" +STARTLINE}
+ Horizontal_Vertical true
+ addUserKnob {41 Flop t "mirror horizontally" T Mirror1.Horizontal}
+ addUserKnob {41 which T Switch1.which}
+}
+add_layer {rgba rgba.beta}
+ Viewer {
+  inputs 0
+  input_number 4
+  input_process false
+  name Viewer1
+  xpos 414
+  ypos 1158
+ }
+ Input {
+  inputs 0
+  name Input1
+  xpos -9
+  ypos 372
+ }
+ Mirror {
+  name Mirror1
+  xpos -9
+  ypos 423
+ }
+ Dot {
+  name Dot3
+  xpos 25
+  ypos 486
+ }
+set N1c64bde0 [stack 0]
+ Dot {
+  name Dot5
+  xpos 259
+  ypos 486
+ }
+ Saturation {
+  saturation 21
+  name Saturation1
+  xpos 225
+  ypos 660
+ }
+ Dot {
+  name Dot6
+  xpos 259
+  ypos 718
+ }
+push $N1c64bde0
+ HSL {
+  name HSL1
+  xpos -10
+  ypos 512
+ }
+set N1c65d460 [stack 0]
+ Shuffle {
+  red blue
+  green blue
+  alpha blue
+  name Shuffle3
+  label "Lightness\n"
+  xpos 75
+  ypos 595
+ }
+push $N1c65d460
+ Shuffle {
+  red green
+  blue green
+  alpha green
+  name Shuffle2
+  label "SAT\n"
+  xpos -9
+  ypos 598
+ }
+push $N1c65d460
+ Shuffle {
+  green red
+  blue red
+  alpha red
+  name Shuffle1
+  label "HUE\n"
+  xpos -102
+  ypos 598
+ }
+push $N1c64bde0
+ Dot {
+  name Dot2
+  xpos -144
+  ypos 486
+ }
+ Dot {
+  name Dot1
+  xpos -144
+  ypos 718
+ }
+ Switch {
+  inputs 5
+  name Switch1
+  xpos -9
+  ypos 714
+ }
+ Multiply {
+  name Multiply1
+  xpos -9
+  ypos 740
+ }
+ Gamma {
+  name Gamma1
+  xpos -9
+  ypos 778
+ }
+set N1c696ec0 [stack 0]
+ Text {
+  font /usr/share/fonts/dejavu/DejaVuSansCondensed-BoldOblique.ttf
+  yjustify bottom
+  Transform 1
+  box {0 0 3072 1167}
+  center {2048 778}
+  name Text3
+  xpos -9
+  ypos 833
+ }
+ Dot {
+  name Dot4
+  xpos 25
+  ypos 878
+ }
+set N1c6b2080 [stack 0]
+ FrameHold {
+  first_frame {{last_frame}}
+  name FrameHold2
+  xpos 101
+  ypos 921
+ }
+push $N1c6b2080
+ FrameHold {
+  first_frame {{int((last_frame-first_frame)/2+first_frame) i}}
+  name FrameHold3
+  xpos -9
+  ypos 923
+ }
+push $N1c6b2080
+ FrameHold {
+  first_frame {{first_frame i}}
+  name FrameHold1
+  xpos -124
+  ypos 919
+ }
+ ContactSheet {
+  inputs 3
+  width {{parent.Horizontal_Vertical==0?(width*3)*parent.Resolution:height*parent.Resolution i}}
+  height {{parent.Horizontal_Vertical==0?height*parent.Resolution:(height)*parent.Resolution i}}
+  rows {{parent.Horizontal_Vertical==0?1:3 i}}
+  columns {{parent.Horizontal_Vertical==0?3:1 i}}
+  name ContactSheet1
+  xpos -9
+  ypos 1023
+ }
+push $N1c696ec0
+ Dot {
+  name Dot8
+  xpos -196
+  ypos 916
+ }
+ Switch {
+  inputs 2
+  which {{parent._3up i}}
+  name Switch2
+  selected true
+  xpos -9
+  ypos 1126
+ }
+ Output {
+  name Output1
+  xpos -9
+  ypos 1183
+ }
+end_group

@@ -1,0 +1,7 @@
+nuke.pluginAddPath("./gizmos")
+nuke.pluginAddPath("./python")
+nuke.pluginAddPath("./icons")
+nuke.pluginAddPath("kiss")
+
+nuke.root()['luts'].addCurve('C-Log', '0.05244583*exp(5.073150*x)-0.09886481')
+        

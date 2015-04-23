@@ -1,0 +1,288 @@
+set cut_paste_input [stack 0]
+version 8.0 v5
+push $cut_paste_input
+Group {
+name CrankIt_WLVFX
+selected true
+xpos 6640
+ypos -1432
+addUserKnob {20 Main}
+addUserKnob {4 Filter M {Magnitude Power Max "Inverse Min" "Max Range" "Inverse Max Range" "Min Range" ""}}
+Filter "Inverse Min"
+}
+Input {
+inputs 0
+name Input1
+xpos 838
+ypos -333
+}
+Dot {
+name Dot45
+xpos 872
+ypos -290
+}
+Dot {
+name Dot46
+xpos 732
+ypos -290
+}
+Dot {
+name Dot47
+xpos 732
+ypos -250
+}
+set Nc75de9a0 [stack 0]
+Dot {
+name Dot48
+xpos 732
+ypos -210
+}
+set N6d6a0980 [stack 0]
+Dot {
+name Dot49
+xpos 732
+ypos -170
+}
+set N2a6c4060 [stack 0]
+Dot {
+name Dot53
+xpos 732
+ypos -130
+}
+set N28e6c800 [stack 0]
+Dot {
+name Dot54
+xpos 732
+ypos -90
+}
+set N29290890 [stack 0]
+Dot {
+name Dot56
+xpos 732
+ypos -50
+}
+set N29294830 [stack 0]
+Dot {
+name Dot69
+xpos 732
+ypos -10
+}
+Expression {
+temp_name0 expMax
+temp_expr0 max(max(r,g),b)
+temp_name1 expMin
+temp_expr1 min(min(r,g),b)
+temp_name2 range
+temp_expr2 expMax-expMin
+expr0 (r/expMin)*(range)
+expr1 (g/expMin)*(range)
+expr2 (b/expMin)*(range)
+expr3 (expMin)*(range)
+name MIN_RANGE
+xpos 838
+ypos -13
+}
+Dot {
+name Dot76
+xpos 996
+ypos -9
+}
+Dot {
+name Dot77
+xpos 996
+ypos 13
+}
+Dot {
+name Dot84
+xpos 759
+ypos 17
+}
+push $N29294830
+Expression {
+temp_name0 expMax
+temp_expr0 max(max(r,g),b)
+temp_name1 expMin
+temp_expr1 min(min(r,g),b)
+temp_name2 range
+temp_expr2 expMax-expMin
+expr0 1-(range/(r/expMax))
+expr1 1-(range/(g/expMax))
+expr2 1-(range/(b/expMax))
+expr3 1-(range/expMax)
+name INVERSE_MAX_RANGE
+xpos 838
+ypos -53
+}
+Dot {
+name Dot74
+xpos 999
+ypos -49
+}
+Dot {
+name Dot75
+xpos 1010
+ypos 16
+}
+Dot {
+name Dot83
+xpos 807
+ypos 22
+}
+push $N29290890
+Expression {
+temp_name0 expMax
+temp_expr0 max(max(r,g),b)
+temp_name1 expMin
+temp_expr1 min(min(r,g),b)
+temp_name2 range
+temp_expr2 expMax-expMin
+expr0 (r/expMax)*(1-range)
+expr1 (g/expMax)*(1-range)
+expr2 (b/expMax)*(1-range)
+expr3 (expMax)*(1-range)
+name MAX_RANGE
+xpos 838
+ypos -93
+}
+Dot {
+name Dot72
+xpos 1009
+ypos -89
+}
+Dot {
+name Dot73
+xpos 1016
+ypos 19
+}
+Dot {
+name Dot82
+xpos 837
+ypos 26
+}
+push $N28e6c800
+Expression {
+temp_name0 expMin
+temp_expr0 min(min(r,g),b)
+expr0 1-(1/(r/expMin))
+expr1 1-(1/(g/expMin))
+expr2 1-(1/(b/expMin))
+expr3 expMin
+name INVERSE_MIN
+xpos 838
+ypos -133
+}
+Dot {
+name Dot70
+xpos 1019
+ypos -129
+}
+Dot {
+name Dot71
+xpos 1023
+ypos 23
+}
+Dot {
+name Dot81
+xpos 865
+ypos 30
+}
+push $N2a6c4060
+Expression {
+temp_name0 expMax
+temp_expr0 max(max(r,g),b)
+expr0 r/expMax
+expr1 g/expMax
+expr2 b/expMax
+expr3 expMax
+name MAX
+xpos 838
+ypos -173
+}
+Dot {
+name Dot43
+xpos 1034
+ypos -172
+}
+Dot {
+name Dot44
+xpos 1030
+ypos 30
+}
+Dot {
+name Dot80
+xpos 886
+ypos 36
+}
+push $N6d6a0980
+Expression {
+temp_name0 expMin
+temp_expr0 min(min(r,g),b)
+expr0 pow(1/expMin,r)-1
+expr1 pow(1/expMin,g)-1
+expr2 pow(1/expMin,b)-1
+expr3 pow(1/expMin,0.1)-1
+name POWER
+xpos 838
+ypos -213
+}
+Dot {
+name Dot41
+xpos 1056
+ypos -209
+}
+Dot {
+name Dot42
+xpos 1044
+ypos 37
+}
+Dot {
+name Dot79
+xpos 902
+ypos 41
+}
+push $Nc75de9a0
+Expression {
+temp_name0 expMag
+temp_expr0 r+g+b
+expr0 r/expMag
+expr1 g/expMag
+expr2 b/expMag
+expr3 expMag
+name MAGNITUDE
+xpos 837
+ypos -253
+}
+Dot {
+name Dot32
+xpos 1078
+ypos -249
+}
+Dot {
+name Dot40
+xpos 1063
+ypos 48
+}
+Dot {
+name Dot78
+xpos 931
+ypos 52
+}
+Switch {
+inputs 7
+which {{Filter}}
+name CRANK
+selected true
+xpos 835
+ypos 117
+}
+Output {
+name Output1
+xpos 835
+ypos 151
+}
+Output {
+name Output1
+xpos 835
+ypos 251
+}
+end_group

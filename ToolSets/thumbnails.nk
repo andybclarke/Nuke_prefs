@@ -1,0 +1,12 @@
+set cut_paste_input [stack 0]
+version 8.0 v5
+push $cut_paste_input
+NoOp {
+name thumbnails
+selected true
+xpos 4677
+ypos -2054
+addUserKnob {20 showhide l "Show / Hide"}
+addUserKnob {22 show l "Show SgtkRead thumbs" T "for n in nuke.allNodes('SgtkRead'):\n    n.knob(\"postage_stamp\").setValue(1)\n" +STARTLINE}
+addUserKnob {22 Hide l "Hide SgtkRead Thumbs" T "for n in nuke.allNodes('SgtkRead'):\n    n.knob(\"postage_stamp\").setValue(0)\n" +STARTLINE}
+}

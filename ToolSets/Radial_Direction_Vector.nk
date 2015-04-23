@@ -1,0 +1,42 @@
+set cut_paste_input [stack 0]
+version 8.0 v5
+Constant {
+inputs 0
+channels rgb
+format "2880 1556 0 0 2880 1556 1 1.85_Crop"
+name Constant10
+selected true
+xpos -914
+ypos 3946
+}
+Ramp {
+p0 {0 0}
+p1 {{width} 0}
+name Ramp1
+selected true
+xpos -914
+ypos 4036
+}
+SphericalTransform {
+input "Lat Long map"
+output "Light Probe 360"
+out_rx 90
+out_rz -90
+format {{{parent.Constant10.format}}}
+fix true
+name SphericalTransform1
+selected true
+xpos -912
+ypos 4091
+}
+Reformat {
+type "to box"
+box_width {{sqrt(pow(width,2)/2)}}
+box_height {{sqrt(pow(height,2)/2)}}
+box_fixed true
+resize none
+name Reformat3
+selected true
+xpos -912
+ypos 4143
+}

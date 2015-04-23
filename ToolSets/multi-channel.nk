@@ -1,0 +1,178 @@
+set cut_paste_input [stack 0]
+version 8.0 v5
+push 0
+Dot {
+ name Dot108
+ selected true
+ xpos -2174
+ ypos 158
+}
+push 0
+Dot {
+ name Dot107
+ selected true
+ xpos -2173
+ ypos 120
+}
+push 0
+Dot {
+ name Dot106
+ selected true
+ xpos -2176
+ ypos 82
+}
+push 0
+Dot {
+ name Dot105
+ selected true
+ xpos -2176
+ ypos 44
+}
+push 0
+Dot {
+ name Dot104
+ selected true
+ xpos -2174
+ ypos 6
+}
+push 0
+Dot {
+ name Dot103
+ selected true
+ xpos -2176
+ ypos -32
+}
+push 0
+Dot {
+ name Dot102
+ selected true
+ xpos -2175
+ ypos -70
+}
+push 0
+Dot {
+ name Dot101
+ selected true
+ xpos -2176
+ ypos -108
+}
+push $cut_paste_input
+Dot {
+ name Dot109
+ selected true
+ xpos -2268
+ ypos -175
+}
+add_layer {direct_diffuse direct_diffuse.red direct_diffuse.green direct_diffuse.blue none}
+ShuffleCopy {
+ inputs 2
+ alpha alpha2
+ black red
+ white green
+ red2 blue
+ green2 alpha
+ out2 direct_diffuse
+ name ShuffleCopy21
+ label "\[value out2]"
+ selected true
+ xpos -2302
+ ypos -118
+}
+add_layer {indirect_diffuse indirect_diffuse.red indirect_diffuse.green indirect_diffuse.blue}
+ShuffleCopy {
+ inputs 2
+ alpha alpha2
+ black red
+ white green
+ red2 blue
+ out2 indirect_diffuse
+ name ShuffleCopy22
+ label "\[value out2]"
+ selected true
+ xpos -2302
+ ypos -80
+}
+add_layer {emission emission.red emission.green emission.blue}
+ShuffleCopy {
+ inputs 2
+ alpha alpha2
+ black red
+ white green
+ red2 blue
+ out2 emission
+ name ShuffleCopy23
+ label "\[value out2]"
+ selected true
+ xpos -2302
+ ypos -42
+}
+add_layer {reflection reflection.red reflection.green reflection.blue}
+ShuffleCopy {
+ inputs 2
+ alpha alpha2
+ black red
+ white green
+ red2 blue
+ out2 reflection
+ name ShuffleCopy24
+ label "\[value out2]"
+ selected true
+ xpos -2302
+ ypos -4
+}
+add_layer {refraction refraction.red refraction.green refraction.blue}
+ShuffleCopy {
+ inputs 2
+ alpha alpha2
+ black red
+ white green
+ red2 blue
+ out2 refraction
+ name ShuffleCopy25
+ label "\[value out2]"
+ selected true
+ xpos -2302
+ ypos 34
+}
+add_layer {indirect_specular indirect_specular.red indirect_specular.green indirect_specular.blue}
+ShuffleCopy {
+ inputs 2
+ alpha alpha2
+ black red
+ white green
+ red2 blue
+ out2 indirect_specular
+ name ShuffleCopy26
+ label "\[value out2]"
+ selected true
+ xpos -2302
+ ypos 72
+}
+add_layer {direct_specular direct_specular.red direct_specular.green direct_specular.blue}
+ShuffleCopy {
+ inputs 2
+ alpha alpha2
+ black red
+ white green
+ red2 blue
+ out2 direct_specular
+ name ShuffleCopy27
+ label "\[value out2]"
+ selected true
+ xpos -2302
+ ypos 110
+}
+add_layer {sss sss.red sss.green sss.blue}
+ShuffleCopy {
+ inputs 2
+ alpha alpha2
+ black red
+ white green
+ red2 blue
+ out2 sss
+ name ShuffleCopy28
+ label "\[value out2]"
+ selected true
+ xpos -2302
+ ypos 148
+}

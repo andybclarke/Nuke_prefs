@@ -1,0 +1,16 @@
+set cut_paste_input [stack 0]
+version 8.0 v5
+push $cut_paste_input
+Transform {
+translate {{(random(t*Speed)*scaler)-scaler/2} {(random((t*Speed)+10)*scaler)-scaler/2 i}}
+center {1024 576}
+name Transform_withNoise
+selected true
+xpos 271
+ypos 82
+addUserKnob {20 User}
+addUserKnob {7 scaler R 0 10}
+scaler {{curve x1045 0 x1056 1.117806554 x1084 0.06121939421}}
+addUserKnob {7 Speed R 0 10}
+Speed 0.65
+}

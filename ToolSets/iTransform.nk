@@ -1,0 +1,191 @@
+set cut_paste_input [stack 0]
+version 8.0 v5
+push $cut_paste_input
+Group {
+ name iTransform
+ selected true
+ xpos 3425
+ ypos -19
+ addUserKnob {20 Transform}
+ addUserKnob {41 translate T Transform10.translate}
+ addUserKnob {41 rotate T Transform10.rotate}
+ addUserKnob {41 scale T Transform10.scale}
+ addUserKnob {41 center T Transform10.center}
+ addUserKnob {41 filter T Transform10.filter}
+ addUserKnob {41 clamp T Transform10.clamp}
+ addUserKnob {14 addpixels l "Add Pixels" R 0 100}
+ addpixels 1024
+}
+ Input {
+  inputs 0
+  name ctrlMask
+  xpos 838
+  ypos -200
+  number 1
+ }
+ Shuffle {
+  red alpha
+  green alpha
+  blue alpha
+  alpha black
+  name Shuffle5
+  xpos 838
+  ypos -142
+ }
+ Input {
+  inputs 0
+  name img
+  selected true
+  xpos 493
+  ypos -399
+ }
+ Dot {
+  name Dot12
+  selected true
+  xpos 527
+  ypos -340
+ }
+set Nab5fafa0 [stack 0]
+ Remove {
+  name Remove1
+  xpos 668
+  ypos -350
+ }
+ AdjBBox {
+  numpixels {{parent.addpixels}}
+  name AdjBBox1
+  xpos 668
+  ypos -312
+ }
+ Expression {
+  expr0 x
+  expr1 y
+  name Expression1
+  xpos 668
+  ypos -258
+ }
+set N17267800 [stack 0]
+ Dot {
+  name Dot8
+  xpos 592
+  ypos -254
+ }
+ Transform {
+  translate {{parent.Transform10.translate.main} {parent.Transform10.translate.main}}
+  rotate {{parent.Transform10.rotate.main}}
+  scale {{parent.Transform10.scale.main} {parent.Transform10.scale.main}}
+  skewX {{parent.Transform10.skew.main}}
+  center {{parent.Transform10.center.main} {parent.Transform10.center.main}}
+  filter {{Transform10.filter}}
+  clamp {{parent.Transform10.clamp.main}}
+  black_outside {{parent.Transform10.black_outside.main}}
+  motionblur {{parent.Transform10.motionblur.main}}
+  shutter {{parent.Transform10.shutter.main}}
+  shutteroffset {{Transform10.shutteroffset}}
+  shuttercustomoffset {{parent.Transform10.shuttercustomoffset.main}}
+  name Transform6
+  xpos 558
+  ypos -190
+ }
+push $N17267800
+ Merge2 {
+  inputs 2
+  operation minus
+  name Merge2
+  xpos 668
+  ypos -190
+ }
+ Merge2 {
+  inputs 2
+  operation multiply
+  name Merge3
+  xpos 668
+  ypos -142
+ }
+set Nb9e10160 [stack 0]
+ Dot {
+  name Dot9
+  xpos 608
+  ypos -139
+ }
+ Dot {
+  name Dot10
+  xpos 608
+  ypos 30
+ }
+push $Nab5fafa0
+ Dot {
+  name Dot11
+  xpos 527
+  ypos -70
+ }
+set Na84d3010 [stack 0]
+ Copy {
+  inputs 2
+  from0 rgba.red
+  to0 rgba.red
+  from1 rgba.green
+  to1 rgba.green
+  name Copy2
+  xpos 493
+  ypos 14
+ }
+ IDistort {
+  channels none
+  name IDistort1
+  xpos 493
+  ypos 64
+ }
+push $Nb9e10160
+push $Na84d3010
+ Copy {
+  inputs 2
+  from0 rgba.red
+  to0 forward.u
+  from1 rgba.green
+  to1 forward.v
+  name Copy1
+  xpos 668
+  ypos -86
+ }
+ IDistort {
+  uv forward
+  name IDistort2
+  xpos 668
+  ypos -36
+ }
+ Remove {
+  channels none
+  name Remove2
+  xpos 668
+  ypos 2
+ }
+ Copy {
+  inputs 2
+  from0 -rgba.alpha
+  to0 -rgba.alpha
+  name Copy3
+  xpos 668
+  ypos 64
+ }
+ Crop {
+  box {0 0 {input.width i} {input.height i}}
+  name Crop1
+  xpos 668
+  ypos 127
+ }
+ Output {
+  name Output1
+  xpos 668
+  ypos 213
+ }
+ Transform {
+  inputs 0
+  center {1024 778}
+  black_outside false
+  name Transform10
+  label "expresison link this\nto avoid st map overlay"
+  xpos 392
+  ypos -203
+ }
+end_group
